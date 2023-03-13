@@ -1,0 +1,25 @@
+import sqlite3
+import re
+import pywhatkit
+our_speech=input("")
+conn = sqlite3.connect('name.db')
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS Nomera (Name_abon text , nomer_abon int )''')
+conn.commit()
+pattern = re.compile(r'\w+')
+#a=pattern.findall(our_speech)[1]
+#b=pattern.findall(our_speech)[2:]
+c.execute(f'SELECT Name_abon FROM Nomera WHERE Name_abon="Кабан"')
+c.execute("SELECT nomer_abon FROM Nomera WHERE Name_abon='Кабан'")
+result=c.fetchall()
+print (result[0][0])  
+#if c.fetchone() is None:
+#    print("такого контакта нет")
+#else:
+#    x=c.execute(f"SELECT nomer_abon FROM Nomera WHERE Name_abon='{a}'")
+#    print(x)
+#    mobile=x
+#    
+#    print(b)
+#    print(mobile)
+#    pywhatkit.sendwhatmsg_instantly(phone_no=mobile, message=b)
